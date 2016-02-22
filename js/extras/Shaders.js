@@ -18,7 +18,7 @@ THREE.Extras.Shaders = {
 			fExposure: {type: "f", value: 0.6},
 			fDecay: {type: "f", value: 0.93},
 			fDensity: {type: "f", value: 0.96},
-			fWeight: {type: "f", value: 0.4},
+			fWeight: {type: "f", value: 0.8},
 			fClamp: {type: "f", value: 1.0}
 		},
 
@@ -46,6 +46,10 @@ THREE.Extras.Shaders = {
 			"uniform float fClamp;",
 
 			"const int iSamples = 20;",
+
+            "float rand(vec2 co){",
+                "return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);",
+            "}",
 
 			"void main()",
 			"{",

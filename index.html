@@ -111,7 +111,7 @@
 				vlight = new THREE.Mesh(
 					new THREE.IcosahedronGeometry(50, 3),
 					new THREE.MeshBasicMaterial({
-						color: COLOR1
+						color: COLOR4
 					})
 				);
 				vlight.position.y = 0;
@@ -128,6 +128,7 @@
 				renderer.sortObjects = true;
 				renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 				renderer.domElement.style.position = "relative";
+                //renderer.setClearColor(0xF52C76);
 
 				container.appendChild( renderer.domElement );
 
@@ -142,8 +143,9 @@
 				container.appendChild( stats.domElement );
 
 				// Geometry
-		    //var geometry = new THREE.CubeGeometry( 100, 100, 100, 4, 4, 4 );
-				var geometry = new THREE.IcosahedronGeometry( 70, 3 );
+		  
+//                var geometry = new THREE.CubeGeometry( 100, 100, 100, 4, 4, 4 );
+		var geometry = new THREE.IcosahedronGeometry( 70, 3 );
 
 		    // materials
 				materials = [
@@ -198,10 +200,11 @@
 				oclcomposer = new THREE.EffectComposer( renderer, renderTargetOcl );
 
 				oclcomposer.addPass( renderModelOcl );
-				oclcomposer.addPass( hblur );
+                /*
+				oclcomposer.addPass( hblur );            
 				oclcomposer.addPass( vblur );
-				oclcomposer.addPass( hblur );
-				oclcomposer.addPass( vblur );
+				/* oclcomposer.addPass( hblur );
+				oclcomposer.addPass( vblur );*/
 				oclcomposer.addPass( grPass );
 
         var finalPass = new THREE.ShaderPass( THREE.Extras.Shaders.Additive );
@@ -248,9 +251,10 @@
 				oclcamera.lookAt( new THREE.Vector3(0,0,0)  );
 				camera.lookAt( new THREE.Vector3(0,0,0)  );
 
-				mesh.rotation.x = Math.sin(t) + 0;
-				mesh.rotation.y = Math.sin(t) + 0;
-				mesh.rotation.z = Math.sin(t) + 0;
+           
+				mesh.rotation.x = Math.sin(t) * 5 + 0;
+				mesh.rotation.y = Math.sin(t) * 5 + 0;
+				mesh.rotation.z = Math.sin(t) * 5 + 0;
 
 				oclmesh.rotation.x = mesh.rotation.x;
 				oclmesh.rotation.y = mesh.rotation.y;
