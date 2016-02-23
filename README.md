@@ -1,2 +1,2 @@
-# touch
-Not sure yet
+# Nao-Game-Client
+For cooperative telepresnce experimenr
