@@ -15,7 +15,8 @@ export default class Game {
         container.appendChild(element);
 
         this.scene = new THREE.Scene();
-        this.camera = new THREE.PerspectiveCamera(90,window.innerWidth / window.innerHeight, 1, 3000);
+        this.camera = new THREE.PerspectiveCamera(60,window.innerWidth / window.innerHeight, 1, 10000);
+        this.camera.position.z = 500;
         this.scene.add(this.camera);
 
 
