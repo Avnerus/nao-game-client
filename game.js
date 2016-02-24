@@ -1,7 +1,5 @@
-require('glslify')
-
 import THREE from 'three'
-import glShader from 'gl-shader'
+import Beam from './beam'
 
 export default class Game {
     constructor() {
@@ -18,9 +16,14 @@ export default class Game {
         this.camera = new THREE.PerspectiveCamera(60,window.innerWidth / window.innerHeight, 1, 10000);
         this.camera.position.z = 500;
         this.scene.add(this.camera);
-
-
         this.clock = new THREE.Clock();
+
+
+        // A Beam
+        this.beam = new Beam(this.scene, this.renderer);
+        this.beam.init()
+
+
         this.resize();
     }
     
@@ -30,6 +33,7 @@ export default class Game {
     }
 
     update(dt) {
+        this.beam.update()
     }
 
     render(dt) {
