@@ -1,10 +1,16 @@
-float rand(vec2 co){
-    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
-}
+#pragma glslify: random = require(glsl-random)
 
 uniform sampler2D positions;
+uniform float timer;
+uniform float maxDepth;
 varying vec2 vUv;
+
 void main() {
     vec3 pos = texture2D( positions, vUv ).rgb;
+    pos.z -= random(vUv);
+    if (pos.z < -20.0) {
+        pos.z = random(vUv);
+    }
+    
     gl_FragColor = vec4( pos,1.0 );
 }

@@ -4,7 +4,7 @@
   "description": "Cooperative Telepresence Experiment",
   "main": "index.html",
   "scripts": {
-    "start": "budo index.js:bundle.js --live -- -t [ babelify --presets [ es2015  ]  ] -t [ glslify  ] -t [ browserify-shim  ]"
+    "start": "budo index.js:bundle.js -- -t [ babelify --presets [ es2015  ]  ] -t [ glslify  ] -t [ browserify-shim  ]"
   },
   "browser": "index.js",
   "repository": "",
@@ -30,6 +30,7 @@
   "dependencies": {
     "gl-shader": "^4.2.0",
     "glsl-curl-noise": "0.0.4",
+    "glsl-random": "0.0.5",
     "watchify-server": "^1.0.2"
   },
   "browserify": {
@@ -42,7 +43,7 @@
   "browserify-shim": {
     "three": "global:THREE"
   },
-  "babelify" : {
+  "babelify": {
     "presets": [
       "es2015"
     ]

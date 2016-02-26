@@ -1,4 +1,3 @@
-import THREE from 'three'
 import Beam from './beam'
 
 export default class Game {
@@ -14,7 +13,8 @@ export default class Game {
 
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(60,window.innerWidth / window.innerHeight, 1, 10000);
-        this.camera.position.z = 400;
+        this.camera.position.z = 300;
+        this.control = new THREE.OrbitControls( this.camera, element );
         this.scene.add(this.camera);
         this.clock = new THREE.Clock();
 
@@ -33,7 +33,8 @@ export default class Game {
     }
 
     update(dt) {
-        this.beam.update()
+        this.beam.update(dt)
+        //console.log(this.camera.rotation);
     }
 
     render(dt) {
