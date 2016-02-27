@@ -23,7 +23,7 @@ export default class Beam {
     }
 
     init() {
-        let geometry = new THREE.CubeGeometry(10, 10, 30);
+        let geometry = new THREE.CubeGeometry(10, 5, 10);
         let data = new Float32Array( this.width * this.height * 3  );
         //let data = Util.getSphere(this.width * this.height, 128);
         let points = THREE.GeometryUtils.randomPointsInGeometry( geometry, this.width * this.height);
