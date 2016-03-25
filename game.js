@@ -13,7 +13,8 @@ export default class Game {
 
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(60,window.innerWidth / window.innerHeight, 1, 10000);
-        this.camera.position.z = 300;
+        this.camera.position.z = 50;
+
         this.control = new THREE.OrbitControls( this.camera, element );
         this.scene.add(this.camera);
         this.clock = new THREE.Clock();

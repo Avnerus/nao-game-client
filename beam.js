@@ -11,7 +11,7 @@ export default class Beam {
         this.simulation_fs = glslify('./glsl/simulation_fs.glsl')
         this.simulation_vs = glslify('./glsl/simulation_vs.glsl')
 
-        this.width = 128
+        this.width = 128 
         this.height = 128
 
         this.scene = scene
@@ -22,8 +22,8 @@ export default class Beam {
         console.log("Beam Constructed!")
     }
 
-    init() {
-        let geometry = new THREE.CubeGeometry(10, 5, 10);
+    initCubeParticles() {
+        let geometry = new THREE.CubeGeometry(100,20, 100);
         let data = new Float32Array( this.width * this.height * 3  );
         //let data = Util.getSphere(this.width * this.height, 128);
         let points = THREE.GeometryUtils.randomPointsInGeometry( geometry, this.width * this.height);
@@ -34,6 +34,12 @@ export default class Beam {
         }
         let positions = new THREE.DataTexture( data, this.width, this.height, THREE.RGBFormat, THREE.FloatType );
         positions.needsUpdate = true;
+        return positions;
+    }
+
+
+    init() {
+        let positions = this.initCubeParticles();
         this.rttIn = positions;
 
         this.simulationShader = new THREE.ShaderMaterial({
@@ -43,7 +49,7 @@ export default class Beam {
                 maxDepth : { type: "f", value: this.maxDepth }
             },
             vertexShader: this.simulation_vs,
-            fragmentShader:  this.simulation_fs
+            fragmentShader:  this.simulation_fs,
         });
 
         this.renderShader = new THREE.ShaderMaterial( {
@@ -54,11 +60,15 @@ export default class Beam {
             vertexShader: this.render_vs,
             fragmentShader: this.render_fs,
             transparent: true,
-            blending:THREE.AdditiveBlending
+            blending:THREE.AdditiveBlending,
         } );
 
+        // Particle geometry? Just once particle
+        var particleGeometry  = new THREE.Geometry();
+        particleGeometry.vertices.push(new THREE.Vector3( 0,  0, 0 ), new THREE.Vector3(0, -2, 0), new THREE.Vector3(0,-2,-2));
+
         this.fbo = new FBO()
-        this.fbo.init( this.width,this.height, this.renderer, this.simulationShader, this.renderShader );
+        this.fbo.init( this.width,this.height, this.renderer, this.simulationShader, this.renderShader, particleGeometry );
         this.fbo.particles.position.y = -10;
         this.fbo.particles.position.x = 30;
         this.fbo.particles.position.z = 270;
