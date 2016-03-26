@@ -55,7 +55,7 @@ export default class Beam {
         this.renderShader = new THREE.ShaderMaterial( {
             uniforms: {
                 positions: { type: "t", value: null },
-                pointSize: { type: "f", value: 2 }
+                pointSize: { type: "f", value: 16 }
             },
             vertexShader: this.render_vs,
             fragmentShader: this.render_fs,
@@ -65,7 +65,7 @@ export default class Beam {
 
         // Particle geometry? Just once particle
         var particleGeometry  = new THREE.Geometry();
-        particleGeometry.vertices.push(new THREE.Vector3( 0,  0, 0 ), new THREE.Vector3(0, -2, 0), new THREE.Vector3(0,-2,-2));
+        particleGeometry.vertices.push(new THREE.Vector3( 0,  0, 0 ), new THREE.Vector3(0, -1, 0), new THREE.Vector3(0,-1,-1));
 
         this.fbo = new FBO()
         this.fbo.init( this.width,this.height, this.renderer, this.simulationShader, this.renderShader, particleGeometry );

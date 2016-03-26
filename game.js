@@ -6,19 +6,21 @@ export default class Game {
     }
     init() {
         this.renderer = new THREE.WebGLRenderer(); 
-        this.renderer.setClearColor( 0x00000, 1 );
+        this.renderer.setClearColor( 0x0C0C30, 1 );
+        //this.renderer.setClearColor( 0x000000, 1 );
         let element = this.renderer.domElement;
         let container = document.getElementById('game');
         container.appendChild(element);
 
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(60,window.innerWidth / window.innerHeight, 1, 10000);
-        this.camera.position.z = 50;
+        this.camera.position.z = 100;
 
         this.control = new THREE.OrbitControls( this.camera, element );
         this.scene.add(this.camera);
         this.clock = new THREE.Clock();
 
+        //this.camera.rotation.x = 0.22;
 
         // A Beam
         this.beam = new Beam(this.scene, this.renderer);
